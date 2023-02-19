@@ -65,15 +65,47 @@ class LinkedList {
     }
 
     pop() {
-      let currentNode = this.head // current node
-      let previousNode = null // previous node
-      while (currentNode.next != null) { // while next value of current node does not equal null
-        previousNode = currentNode // assign previous node to current node
-        currentNode = currentNode.next // assign current node to next node value
-      }
-      previousNode.next = null // assign the next value of previous node to equal null
+        let currentNode = this.head // current node
+        let previousNode = null // previous node
+        while (currentNode.next != null) { // while next value of current node does not equal null
+            previousNode = currentNode // assign previous node to current node
+            currentNode = currentNode.next // assign current node to next node value
+        }
+        previousNode.next = null // assign the next value of previous node to equal null
     }
 
+    contains(value) {
+        let currentValue = this.head // initialize head node 
+
+        while(currentValue != null) { // while head does not equal null
+            currentValue = currentValue.next // this node equals next node
+            if (currentValue.value === value) { // if node value is equal to passed in value return true, else return false
+                return true
+            }
+            return false
+        }
+    }
+
+    find(value) {
+        let currentValue = this.head 
+        let index = 0
+
+        if (currentValue.value === value && index === 0) { // if current node value equals passed in value and counter === 0
+            return `Index of current node is ${index}`
+        }
+
+        while(currentValue != null) { // else if current value does not equal null
+            currentValue = currentValue.next 
+            index++
+            if (currentValue.value === value) {
+                return `Index of current node is ${index}`
+            }
+        }
+    }
+
+    toString() {
+        return JSON.stringify(this.head)
+    }
 
 }
 
@@ -91,9 +123,14 @@ const list = new LinkedList()
 list.append(6)
 list.prepend(7)
 list.prepend(1)
+list.prepend(2)
 list.pop()
-// console.log(list)
-// console.log(list.size())
-// console.log(list.returnHead())
-// console.log(list.returnTail())
-// console.log(list.atIndex(1))
+console.log(list.toString())
+console.log(list.contains(7))
+console.log(list.find(2))
+console.log(list)
+console.log(list)
+console.log(list.size())
+console.log(list.returnHead())
+console.log(list.returnTail())
+console.log(list.atIndex(1))
